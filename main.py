@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 
-st.set_page_config(page_title="Music Recommendation System")
+st.set_page_config(page_title="Karachi House Price Prediction")
 
 try:
     with open('finalized_model.pkl', 'rb') as model_file:
@@ -31,17 +31,30 @@ def prediction(location,sqft,bedrooms,baths):
 
     return adjusted_price
 
+def sqft_to_gaz(sqft):
+    return sqft / 9
+
 st.title("Karachi House Price Prediction")
-st.write("This is a simple web app to predict house prices in Karachi, Pakistan.")
+st.subheader("A simple web app to predict house prices in Karachi, Pakistan.")
+st.divider()
+st.warning("""The house price predictions provided by this project are intended solely for informational purposes and are not guaranteed to be accurate. These predictions are generated using a machine learning model trained on historical data sourced from Kaggle, which has been adjusted to reflect an inflation rate of 19.87%. """)
+
+
+
 
 location = st.selectbox("Select Location", features.columns[3:])
 sqft = st.number_input("Square Feet")
+gaz_sqft = str(int(sqft_to_gaz(sqft)))
+st.info(f"Square Feet converted to yards: {gaz_sqft}")
 bedrooms = st.slider("Bedrooms" , max_value=8)
 baths = st.slider("Bathrooms", max_value=6)
 
+
+
+
 if st.button("Predict Price"):
     price = str(int(prediction(location, sqft, bedrooms, baths)))
-    st.write(f"The estimated price of the house is: {price} Million PKR")
+    st.success(f"The estimated price of the house is: {price} Million PKR", icon="🏠")
 
 
 
