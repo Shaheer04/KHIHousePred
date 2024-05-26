@@ -10,7 +10,7 @@ Data-driven insights: Utilizes a comprehensive dataset from Kaggle.
 
 Inflation adjustment: Prices are adjusted to account for a 19.87% inflation rate.
 
-Deployed Application
+## Deployed Application
 Access the deployed application [here]() 
 
 ## Data Source
