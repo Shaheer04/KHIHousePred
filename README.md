@@ -5,8 +5,11 @@ House Price Predictor is a machine learning project designed to estimate future 
 
 ## Features
 Predict future house prices: Get an estimate of property values based on historical trends.
+
 Data-driven insights: Utilizes a comprehensive dataset from Kaggle.
+
 Inflation adjustment: Prices are adjusted to account for a 19.87% inflation rate.
+
 Deployed Application
 Access the deployed application [here]() 
 
