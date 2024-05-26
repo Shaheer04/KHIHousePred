@@ -6,12 +6,12 @@ import streamlit as st
 st.set_page_config(page_title="Karachi House Price Prediction")
 
 try:
-    with open('../finalized_model.pkl', 'rb') as model_file:
+    with open('finalized_model.pkl', 'rb') as model_file:
         model = pickle.load(model_file)
 except Exception as e:
     print(f"Error loading pickle file: {e}")
 
-features = pd.read_csv('../features.csv')
+features = pd.read_csv('features.csv')
 
 def prediction(location,sqft,bedrooms,baths):
     loc_index = np.where(features.columns==location)[0][0]
