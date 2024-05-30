@@ -36,27 +36,26 @@ def sqft_to_gaz(sqft):
 
 st.title("Karachi House Price Prediction")
 st.subheader("A simple web app to predict house prices in Karachi, Pakistan.")
-st.warning("""The house price predictions provided by this project are intended solely for informational purposes and are not guaranteed to be accurate. These predictions are generated using a machine learning model trained on historical data sourced from Kaggle, which has been adjusted to reflect an inflation rate of 19.87%. """)
 
-
-
-tab1 ,tab2 = st.tabs(["Predict Price", "About"])
-with tab1:
-    location = st.selectbox("Select Location", features.columns[3:])
-    sqft = st.number_input("Square Feet")
-    gaz_sqft = str(int(sqft_to_gaz(sqft)))
-    st.info(f"Square Feet converted to yards: {gaz_sqft}")
-    bedrooms = st.slider("Bedrooms" , max_value=8)
-    baths = st.slider("Bathrooms", max_value=6)
-
-    if st.button("Predict Price"):
-        price = str(int(prediction(location, sqft, bedrooms, baths)))
-        st.success(f"The estimated price of the house is: {price} Million PKR", icon="🏠")
-
-with tab2:
+with st.sidebar:
     st.title("About")
-    st.link_button("GitHub", "https://github.com/Shaheer04")
-    st.link_button("LinkedIn Profile", "https://www.linkedin.com/in/shaheerjamal/")
+    st.link_button("GitHub", "https://github.com/Shaheer04", use_container_width=True)
+    st.link_button("LinkedIn", "https://www.linkedin.com/in/shaheerjamal/", use_container_width=True)
+    st.warning("""The house price predictions provided by this project are intended solely for informational purposes and are not guaranteed to be accurate. These predictions are generated using a machine learning model trained on historical data sourced from Kaggle, which has been adjusted to reflect an inflation rate of 19.87%. """)
+    st.caption("Made with ❤️ by Shaheer Jamal") 
+
+
+location = st.selectbox("Select Location", features.columns[3:])
+sqft = st.number_input("Square Feet")
+gaz_sqft = str(int(sqft_to_gaz(sqft)))
+st.info(f"Square Feet converted to yards: {gaz_sqft}")
+bedrooms = st.slider("Bedrooms" , max_value=8)
+baths = st.slider("Bathrooms", max_value=6)
+
+if st.button("Predict Price", type="primary"):
+    price = str(int(prediction(location, sqft, bedrooms, baths)))
+    st.success(f"The estimated price of the house is: {price} Million PKR", icon="🏠")
+    st.caption("Made with ❤️ by Shaheer Jamal")
 
 
 
